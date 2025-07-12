@@ -1,0 +1,6 @@
+@cadastro_pessoas_fisicas_juridicas_api_HostAddress = http://localhost:5193
+
+GET {{cadastro_pessoas_fisicas_juridicas_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
