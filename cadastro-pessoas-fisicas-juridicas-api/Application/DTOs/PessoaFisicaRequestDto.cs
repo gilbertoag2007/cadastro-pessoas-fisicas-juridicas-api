@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace cadastro_pessoas_fisicas_juridicas_api.Application.DTOs
 {
@@ -19,12 +21,10 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.DTOs
         [StringLength(20, ErrorMessage = "O órgão emissor deve ter no máximo 20 caracteres.")]
         public string OrgaoEmissor { get; set; } = string.Empty;
 
-       // [DataType(DataType.Date, ErrorMessage = "A data de emissão está em formato inválido.")]
-        public DateTime DataEmissao { get; set; }
+        public DateTime? DataEmissao { get; set; }
 
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
-     //   [DataType(DataType.Date, ErrorMessage = "A data de nascimento está em formato inválido.")]
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         [StringLength(100, ErrorMessage = "O nome do pai deve ter no máximo 100 caracteres.")]
         public string NomePai { get; set; } = string.Empty;

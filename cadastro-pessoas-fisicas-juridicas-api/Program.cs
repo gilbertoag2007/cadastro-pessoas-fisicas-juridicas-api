@@ -1,14 +1,15 @@
 using cadastro_pessoas_fisicas_juridicas_api.Application.UsesCases.PessoaFisicaUC;
 using cadastro_pessoas_fisicas_juridicas_api.Application.UsesCases.PessoaJuridicaUC;
 using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories;
+using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Serialization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,6 +33,20 @@ builder.Services.AddScoped<EditarPessoaJuridicaUseCase>();
 builder.Services.AddScoped<ExcluirPessoaJuridicaUseCase>();
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+var cultureInfo = new CultureInfo("pt-BR");
+cultureInfo.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+cultureInfo.DateTimeFormat.DateSeparator = "/";
+
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new NullableDateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+    });
 
 var app = builder.Build();
 
