@@ -6,7 +6,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.DTOs
 {
     public class PessoaFisicaRequestDto
     {
-        public int Id { get; set; }
+
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
         public string Nome { get; set; } = string.Empty;
