@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cadastro_pessoas_fisicas_juridicas_api.Domain.Entities
 {
+    [Table("endereco")]
     public class Endereco
     {
         [Key]

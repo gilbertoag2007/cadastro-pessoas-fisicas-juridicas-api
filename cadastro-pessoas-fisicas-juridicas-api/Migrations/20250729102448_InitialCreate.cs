@@ -13,7 +13,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PessoasFisicas",
+                name: "pessoa_fisica",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -26,16 +26,16 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                     DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     NomePai = table.Column<string>(type: "text", nullable: false),
                     NomeMae = table.Column<string>(type: "text", nullable: false),
-                    DataCadastro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EstaAtivo = table.Column<bool>(type: "boolean", nullable: false)
+                    EstaAtivo = table.Column<bool>(type: "boolean", nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PessoasFisicas", x => x.Id);
+                    table.PrimaryKey("PK_pessoa_fisica", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PessoasJuridicas",
+                name: "pessoa_juridica",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -47,11 +47,11 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PessoasJuridicas", x => x.Id);
+                    table.PrimaryKey("PK_pessoa_juridica", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enderecos",
+                name: "endereco",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -67,23 +67,23 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enderecos", x => x.Id);
+                    table.PrimaryKey("PK_endereco", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Enderecos_PessoasFisicas_PessoaFisicaId",
+                        name: "FK_endereco_pessoa_fisica_PessoaFisicaId",
                         column: x => x.PessoaFisicaId,
-                        principalTable: "PessoasFisicas",
+                        principalTable: "pessoa_fisica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Enderecos_PessoasJuridicas_PessoaJuridicaId",
+                        name: "FK_endereco_pessoa_juridica_PessoaJuridicaId",
                         column: x => x.PessoaJuridicaId,
-                        principalTable: "PessoasJuridicas",
+                        principalTable: "pessoa_juridica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PresencasOnline",
+                name: "presenca_online",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -98,23 +98,23 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PresencasOnline", x => x.Id);
+                    table.PrimaryKey("PK_presenca_online", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PresencasOnline_PessoasFisicas_PessoaFisicaId",
+                        name: "FK_presenca_online_pessoa_fisica_PessoaFisicaId",
                         column: x => x.PessoaFisicaId,
-                        principalTable: "PessoasFisicas",
+                        principalTable: "pessoa_fisica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PresencasOnline_PessoasJuridicas_PessoaJuridicaId",
+                        name: "FK_presenca_online_pessoa_juridica_PessoaJuridicaId",
                         column: x => x.PessoaJuridicaId,
-                        principalTable: "PessoasJuridicas",
+                        principalTable: "pessoa_juridica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Telefones",
+                name: "telefone",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -130,53 +130,53 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Telefones", x => x.Id);
+                    table.PrimaryKey("PK_telefone", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Telefones_PessoasFisicas_PessoaFisicaId",
+                        name: "FK_telefone_pessoa_fisica_PessoaFisicaId",
                         column: x => x.PessoaFisicaId,
-                        principalTable: "PessoasFisicas",
+                        principalTable: "pessoa_fisica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Telefones_PessoasJuridicas_PessoaJuridicaId",
+                        name: "FK_telefone_pessoa_juridica_PessoaJuridicaId",
                         column: x => x.PessoaJuridicaId,
-                        principalTable: "PessoasJuridicas",
+                        principalTable: "pessoa_juridica",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enderecos_PessoaFisicaId",
-                table: "Enderecos",
+                name: "IX_endereco_PessoaFisicaId",
+                table: "endereco",
                 column: "PessoaFisicaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enderecos_PessoaJuridicaId",
-                table: "Enderecos",
+                name: "IX_endereco_PessoaJuridicaId",
+                table: "endereco",
                 column: "PessoaJuridicaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PresencasOnline_PessoaFisicaId",
-                table: "PresencasOnline",
+                name: "IX_presenca_online_PessoaFisicaId",
+                table: "presenca_online",
                 column: "PessoaFisicaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PresencasOnline_PessoaJuridicaId",
-                table: "PresencasOnline",
+                name: "IX_presenca_online_PessoaJuridicaId",
+                table: "presenca_online",
                 column: "PessoaJuridicaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Telefones_PessoaFisicaId",
-                table: "Telefones",
+                name: "IX_telefone_PessoaFisicaId",
+                table: "telefone",
                 column: "PessoaFisicaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Telefones_PessoaJuridicaId",
-                table: "Telefones",
+                name: "IX_telefone_PessoaJuridicaId",
+                table: "telefone",
                 column: "PessoaJuridicaId");
         }
 
@@ -184,19 +184,19 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Enderecos");
+                name: "endereco");
 
             migrationBuilder.DropTable(
-                name: "PresencasOnline");
+                name: "presenca_online");
 
             migrationBuilder.DropTable(
-                name: "Telefones");
+                name: "telefone");
 
             migrationBuilder.DropTable(
-                name: "PessoasFisicas");
+                name: "pessoa_fisica");
 
             migrationBuilder.DropTable(
-                name: "PessoasJuridicas");
+                name: "pessoa_juridica");
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using cadastro_pessoas_fisicas_juridicas_api.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cadastro_pessoas_fisicas_juridicas_api.Domain.Entities
 {
+    [Table("telefone")]
     public class Telefone
     {
        [Key]

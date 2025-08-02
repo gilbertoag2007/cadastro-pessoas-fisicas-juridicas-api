@@ -12,7 +12,7 @@ using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories;
 namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250720201658_InitialCreate")]
+    [Migration("20250729102448_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.18")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -72,7 +72,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                     b.HasIndex("PessoaJuridicaId")
                         .IsUnique();
 
-                    b.ToTable("Enderecos");
+                    b.ToTable("endereco");
                 });
 
             modelBuilder.Entity("cadastro_pessoas_fisicas_juridicas_api.Domain.Entities.PessoaFisica", b =>
@@ -121,7 +121,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PessoasFisicas");
+                    b.ToTable("pessoa_fisica");
                 });
 
             modelBuilder.Entity("cadastro_pessoas_fisicas_juridicas_api.Domain.Entities.PessoaJuridica", b =>
@@ -149,7 +149,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PessoasJuridicas");
+                    b.ToTable("pessoa_juridica");
                 });
 
             modelBuilder.Entity("cadastro_pessoas_fisicas_juridicas_api.Domain.Entities.PresencaOnLine", b =>
@@ -190,7 +190,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
                     b.HasIndex("PessoaJuridicaId")
                         .IsUnique();
 
-                    b.ToTable("PresencasOnline");
+                    b.ToTable("presenca_online");
                 });
 
             modelBuilder.Entity("cadastro_pessoas_fisicas_juridicas_api.Domain.Entities.Telefone", b =>
@@ -233,7 +233,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Migrations
 
                     b.HasIndex("PessoaJuridicaId");
 
-                    b.ToTable("Telefones");
+                    b.ToTable("telefone");
                 });
 
             modelBuilder.Entity("cadastro_pessoas_fisicas_juridicas_api.Domain.Entities.Endereco", b =>

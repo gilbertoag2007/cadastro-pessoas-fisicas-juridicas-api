@@ -5,10 +5,10 @@ using System.Reflection.Emit;
 
 namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
-        public DbSet<PessoaFisica> PessoasFisicas { get; set; }
-        public DbSet<PessoaJuridica> PessoasJuridicas { get; set; }
+        public DbSet<PessoaFisica> PessoaFisica { get; set; }
+        public DbSet<PessoaJuridica> PessoaJuridica { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<PresencaOnLine> PresencasOnline { get; set; }
@@ -17,9 +17,12 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories
         {
         }
 
-       
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+
             base.OnModelCreating(modelBuilder);
 
             // PessoaFisica → Telefones
@@ -63,8 +66,27 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories
                 .WithOne(pj => pj.PresencaOnline)
                 .HasForeignKey<PresencaOnLine>(p => p.PessoaJuridicaId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+/*
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(DateTime) || property.ClrType == typeof(DateTime?))
+                    {
+                        modelBuilder.Entity(entityType.ClrType).Property(property.Name)
+                            .HasConversion(
+                                v => v.Kind == DateTimeKind.Unspecified ? DateTime.SpecifyKind(v, DateTimeKind.Utc) : v,
+                                v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+                    }
+                }
+            }
+
+*/
+
+
+
+
         }
-
     }
-
 }
