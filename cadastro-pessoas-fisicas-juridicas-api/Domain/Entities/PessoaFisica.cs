@@ -18,9 +18,9 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Domain.Entities
 
         public string OrgaoEmissor { get; set; } = string.Empty;
 
-        public DateTime? DataEmissao { get; set; }
+        public DateOnly? DataEmissao { get; set; }
 
-        public DateTime? DataNascimento { get; set; }
+        public DateOnly? DataNascimento { get; set; }
 
         public string NomePai { get; set; } = string.Empty;
 

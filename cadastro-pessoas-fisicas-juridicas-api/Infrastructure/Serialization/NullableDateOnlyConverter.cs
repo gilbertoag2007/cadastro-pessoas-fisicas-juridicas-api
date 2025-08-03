@@ -1,14 +1,15 @@
 ﻿using System.Globalization;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Serialization;
 
 namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Serialization
 {
-    public class NullableDateTimeConverter : JsonConverter<DateTime?>
+    public class NullableDateOnlyConverter : JsonConverter<DateOnly?>
     {
         private readonly string _format = "dd/MM/yyyy";
 
-        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override DateOnly? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType == JsonTokenType.Null)
                 return null;
@@ -17,19 +18,16 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Serialization
             if (string.IsNullOrWhiteSpace(str))
                 return null;
 
-            var date = DateTime.ParseExact(str, _format, CultureInfo.InvariantCulture);
-            return DateTime.SpecifyKind(date, DateTimeKind.Utc);
+            return DateOnly.ParseExact(str, _format, CultureInfo.InvariantCulture);
         }
 
-        public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, DateOnly? value, JsonSerializerOptions options)
         {
             if (value.HasValue)
-                writer.WriteStringValue(value.Value.ToString(_format));
+                writer.WriteStringValue(value.Value.ToString(_format, CultureInfo.InvariantCulture));
             else
                 writer.WriteNullValue();
         }
     }
-
 }
-
 

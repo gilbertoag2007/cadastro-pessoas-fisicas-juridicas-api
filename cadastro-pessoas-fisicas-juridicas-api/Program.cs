@@ -44,8 +44,11 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Converters.Add(new NullableDateTimeConverter());
-        options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new NullableDateOnlyConverter());
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyConverter());
+        options.JsonSerializerOptions.Converters.Add(new DateTimeConverterComHora());
+       
+
     });
 
 var app = builder.Build();
