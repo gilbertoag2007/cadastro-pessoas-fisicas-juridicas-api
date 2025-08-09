@@ -10,5 +10,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories
         Task AtualizarAsync(PessoaFisica pessoa);
         Task RemoverAsync(int id);
         Task<bool> ExisteCpfAsync(string cpf);
+
+
     }
 }

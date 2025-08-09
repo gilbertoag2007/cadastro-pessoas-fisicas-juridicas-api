@@ -10,6 +10,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.Mappings
         {
             // Pessoa Física
             CreateMap<PessoaFisica, PessoaFisicaRequestDto>().ReverseMap();
+
             CreateMap<PessoaFisica, PessoaFisicaResponseDto>().ReverseMap();
 
             // Pessoa Jurídica

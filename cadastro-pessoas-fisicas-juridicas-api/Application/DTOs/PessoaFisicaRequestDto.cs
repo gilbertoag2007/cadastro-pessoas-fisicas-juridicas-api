@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -21,8 +22,10 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.DTOs
         [StringLength(20, ErrorMessage = "O órgão emissor deve ter no máximo 20 caracteres.")]
         public string OrgaoEmissor { get; set; } = string.Empty;
 
+        [SwaggerSchema(Format = "dd/MM/yyyy", Description = "Data de emissão no formato DD/MM/AAAA")]
         public DateOnly? DataEmissao { get; set; }
 
+        [SwaggerSchema(Format = "dd/MM/yyyy", Description = "Data de nascimento no formato DD/MM/AAAA")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
         public DateOnly? DataNascimento { get; set; }
 
