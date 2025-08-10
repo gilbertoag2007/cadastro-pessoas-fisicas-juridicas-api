@@ -18,7 +18,12 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.UsesCases.PessoaFis
 
         public async Task ExecuteAsync(int id, PessoaFisicaRequestDto dto)
         {
-            var entity = _mapper.Map<PessoaFisica>(dto);
+            var entity = await _repository.ObterPorIdAsync(id);
+            if (entity == null)
+                throw new KeyNotFoundException($"Pessoa física {id} não encontrada.");
+
+            _mapper.Map(dto, entity); // Atualiza os campos sem criar novo objeto
+
             await _repository.AtualizarAsync(entity);
         }
 

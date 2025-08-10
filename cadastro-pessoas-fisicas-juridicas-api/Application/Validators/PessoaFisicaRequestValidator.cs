@@ -20,9 +20,19 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Application.Validators
                RuleFor(x => x.DataEmissao)
                    .LessThan(DateOnly.FromDateTime(DateTime.Today))
                    .WithMessage("A data de emissão deve ser anterior a data atual.");
-            
 
-           
+               RuleFor(x => x.Rg)
+                .NotEmpty()
+                .When(x => !string.IsNullOrWhiteSpace(x.OrgaoEmissor))
+                .WithMessage("O campo RG deve ser preenchido quando o órgão emissor for informado.");
+
+               
+               RuleFor(x => x.OrgaoEmissor)
+                    .NotEmpty()
+                    .When(x => !string.IsNullOrWhiteSpace(x.Rg))
+                    .WithMessage("O campo Órgão Emissor deve ser preenchido quando o RG for informado.");
+
+
         }
 
         private bool CpfValido(string cpf)

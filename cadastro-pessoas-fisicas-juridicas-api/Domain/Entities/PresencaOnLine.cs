@@ -7,7 +7,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Domain.Entities
     public class PresencaOnLine
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string? Email { get; set; }
         public string? WebsiteUrl { get; set; }
         public string? FacebookUrl { get; set; }
