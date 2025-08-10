@@ -8,7 +8,7 @@
         public string RamoAtividade { get; set; } = string.Empty;
 
         public EnderecoDto? Endereco { get; set; }
-        public List<TelefoneDto> Telefones { get; set; } = new();
+        public List<TelefoneDto>? Telefones { get; set; } = new();
         public PresencaOnlineDto? PresencaOnline { get; set; }
     }
 }

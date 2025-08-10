@@ -1,7 +1,7 @@
 ﻿using cadastro_pessoas_fisicas_juridicas_api.Application.DTOs;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples
+namespace cadastro_pessoas_fisicas_juridicas_api.Swagger.SwaggerExamples
 {
     public class PresencaOnlineDtoExample : IExamplesProvider<PresencaOnlineDto>
     {
@@ -16,6 +16,6 @@ namespace cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples
                 TwitterUrl = "https://twitter.com/exemplo",
                 LinkedInUrl = "https://www.linkedin.com/in/exemplo"
             };
-            }
         }
     }
+}

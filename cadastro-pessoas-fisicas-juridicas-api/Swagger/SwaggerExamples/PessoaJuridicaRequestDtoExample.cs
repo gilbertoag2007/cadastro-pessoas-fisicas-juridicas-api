@@ -1,7 +1,8 @@
 ﻿using cadastro_pessoas_fisicas_juridicas_api.Application.DTOs;
+using cadastro_pessoas_fisicas_juridicas_api.Swagger.SwaggerExamples;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples
+namespace cadastro_pessoas_fisicas_juridicas_api.Swagger.SwaggerExamples
 {
     public class PessoaJuridicaRequestDtoExample : IExamplesProvider<PessoaJuridicaRequestDto>
     {
@@ -9,10 +10,10 @@ namespace cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples
         {
             return new PessoaJuridicaRequestDto
             {
-               RazaoSocial="Empresa de TI S/A",
-               Cnpj= "12345678000195",
-                EhMatriz=true , 
-                RamoAtividade ="Empresa de Tecnologia",
+                RazaoSocial = "Empresa de TI S/A",
+                Cnpj = "12345678000195",
+                EhMatriz = true,
+                RamoAtividade = "Empresa de Tecnologia",
                 Endereco = new EnderecoDtoExample().GetExamples(),
                 Telefones = new TelefoneDtoExample().GetExamples(),
                 PresencaOnline = new PresencaOnlineDtoExample().GetExamples()

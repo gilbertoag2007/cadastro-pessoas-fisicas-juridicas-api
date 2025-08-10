@@ -4,7 +4,8 @@ using cadastro_pessoas_fisicas_juridicas_api.Application.Validators;
 using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Repositories;
 using cadastro_pessoas_fisicas_juridicas_api.Infrastructure.Serialization;
 using cadastro_pessoas_fisicas_juridicas_api.Middlewares;
-using cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples;
+using cadastro_pessoas_fisicas_juridicas_api.Swagger.Filters;
+using cadastro_pessoas_fisicas_juridicas_api.Swagger.SwaggerExamples;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ builder.Services.AddSwaggerGen(c =>
         Title = "API de Cadastro de Pessoas Físicas e Jurídicas",
         Version = "v1"
     });
+    c.SchemaFilter<EnumSchemaFilter>();
 
     // Ativa os filtros de exemplo no gerador (SwaggerGenOptions)
     c.ExampleFilters();

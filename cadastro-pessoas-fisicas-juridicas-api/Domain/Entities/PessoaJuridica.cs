@@ -13,7 +13,7 @@ namespace cadastro_pessoas_fisicas_juridicas_api.Domain.Entities
         public string RamoAtividade { get; set; } = string.Empty;
 
         public Endereco? Endereco { get; set; }
-        public List<Telefone> Telefones { get; set; } = new();
+        public List<Telefone>? Telefones { get; set; } = new();
         public PresencaOnLine? PresencaOnline { get; set; }
 
     }

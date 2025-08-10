@@ -1,7 +1,7 @@
 ﻿using cadastro_pessoas_fisicas_juridicas_api.Application.DTOs;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace cadastro_pessoas_fisicas_juridicas_api.SwaggerExamples
+namespace cadastro_pessoas_fisicas_juridicas_api.Swagger.SwaggerExamples
 {
     public class TelefoneDtoExample : IExamplesProvider<List<TelefoneDto>>
     {
