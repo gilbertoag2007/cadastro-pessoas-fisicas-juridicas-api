@@ -82,6 +82,51 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 var app = builder.Build();
 
+app.UseMiddleware<SecurityHeadersMiddleware>();
+/*
+
+// Middleware para adicionar cabeçalhos de segurança
+app.Use(async (context, next) =>
+{
+    // Enforce HTTPS Strict Transport Security (HSTS) para garantir comunicação segura
+    context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload";
+ 
+    // Previne MIME-type sniffing (impede que navegador interprete tipos errados)
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+      
+     // Protege contra clickjacking
+     context.Response.Headers["X-Frame-Options"] = "DENY";
+ 
+    // Controla a informação enviada no header Referer para proteger dados sensíveis
+    context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
+
+    // Controla permissões de recursos sensíveis do navegador (microfone, câmera, etc)
+    context.Response.Headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=(), interest-cohort=()";
+
+    // Remove informações do servidor para não expor vulnerabilidades
+    context.Response.Headers.Remove("Server");
+
+    // Evita cache de respostas da API (especialmente dados sensíveis)
+    context.Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+
+    
+// Política restritiva para carregamento de recursos e mitigação de XSS
+  context.Response.Headers["Content-Security-Policy"] = "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'";
+    /*
+
+
+// CORS: Deve ser configurado estritamente para domínios confiáveis (exemplo com um domínio)
+//   context.Response.Headers["Access-Control-Allow-Origin"] = "https://seudominio.com";
+//   context.Response.Headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS";
+//   context.Response.Headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization";
+//   context.Response.Headers["Access-Control-Allow-Credentials"] = "true";
+
+
+    await next();
+});
+
+*/
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure o pipeline HTTP.
